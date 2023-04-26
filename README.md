@@ -24,7 +24,7 @@ Para essa continuação do projeto, os donos da vinheria pediram para monitorar 
 
 * com o ambente na temperatura entre 10ºC e 15ºC o display informa que a "temperatura está OK" e o valor da temperatura;
 
-! [imagem] (https://user-images.githubusercontent.com/126830037/234444709-9b1d2352-0f6a-4152-b91e-02e403e7d00f.png)
+![image](https://user-images.githubusercontent.com/126830016/234455118-e47037e6-5b16-4647-bf4e-a9da08502b05.png)
 
 ​
 
