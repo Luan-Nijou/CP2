@@ -1,3 +1,4 @@
+// https://www.tinkercad.com/things/5Hs7n0zbglx-teste-principal-urgente/editel
 #include <LiquidCrystal.h>
 
 LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
@@ -6,13 +7,16 @@ int GREEN_LED_PIN = 6;
 int YELLOW_LED_PIN = 7;
 int RED_LED_PIN = 8;
 const int BUZZER_PIN = 9;
-
-
+float Temp_M = 0;
+float accuml = 0;
+ int i;
+  
 const int Temp_PIM = A1;
 int sensorhumidade = 0;
 int RawValue= 0;
 double Voltage = 0;
-double tempC = 0;
+float tempC = 0;
+
 
 // Define os limiares de luminosidade
 int MODO_OK = 870;    // Nível de luminosidade considerado OK
@@ -24,8 +28,6 @@ int temp_ALERTA = 15;
 
 // Define o estado atual do sistema
 int LumiState = 0;  // 0 = OK, 1 = Alerta, 2 = Problema
-int HumiState = 0;  // 0 = OK, 1 = Alerta, 2 = Problema
-int TempState = 0;  // 0 = OK, 1 = Alerta, 2 = Problema
 
 void setup() {
   lcd.begin(16, 2);
@@ -37,7 +39,64 @@ void setup() {
   pinMode(A2, INPUT);
   
 }
+ 
 
+void Temp_Rod() {
+  if (tempC<temp_OK) {
+ 	 lcd.clear();
+  	 lcd.setCursor(0, 0);
+  	 lcd.print("Temp. Baixa ");
+  	 lcd.setCursor(0, 1);
+ 	 lcd.print("Temp. = ");
+  	 lcd.println(tempC);
+     tone(BUZZER_PIN,1000,3000);
+     digitalWrite(YELLOW_LED_PIN, HIGH);
+    }else if (tempC<temp_ALERTA){
+    lcd.clear();
+  	lcd.setCursor(0, 0);
+  	lcd.print("Temp. OK ");
+  	lcd.setCursor(0, 1);
+  	lcd.print("Temp. = ");
+  	lcd.println(tempC,0);      
+    } else {
+    lcd.clear();
+  	lcd.setCursor(0, 0);
+    lcd.print("Temp. ALTA ");
+  	lcd.setCursor(0, 1);
+  	lcd.print("Temp. = ");
+  	lcd.println(tempC,0);
+    tone(BUZZER_PIN,1000,3000);
+    digitalWrite(RED_LED_PIN, HIGH);
+  }
+}
+void Humi_Rod() {
+  if (map(sensorhumidade, 0, 1023, 0, 100)<humi_OK) {
+ 	 lcd.clear();
+  	 lcd.setCursor(0, 0);
+  	 lcd.print("Umid. Baixa ");
+  	 lcd.setCursor(0, 1);
+ 	 lcd.print("Umid. = ");
+  	 lcd.println(map(sensorhumidade, 0, 1023, 0, 100));
+     tone(BUZZER_PIN,1000,3000);
+     digitalWrite(YELLOW_LED_PIN, HIGH);
+    }else if (map(sensorhumidade, 0, 1023, 0, 100)<humi_ALERTA){
+    lcd.clear();
+  	lcd.setCursor(0, 0);
+  	lcd.print("Umid. OK ");
+  	lcd.setCursor(0, 1);
+  	lcd.print("Umid. = ");
+  	lcd.println(map(sensorhumidade, 0, 1023, 0, 100));      
+    } else {
+    lcd.clear();
+  	lcd.setCursor(0, 0);
+    lcd.print("Umid. ALTA ");
+  	lcd.setCursor(0, 1);
+  	lcd.print("Umid. =");
+  	lcd.println(map(sensorhumidade, 0, 1023, 0, 100));
+    tone(BUZZER_PIN,1000,3000);
+    digitalWrite(RED_LED_PIN, HIGH);
+  }
+}
 void loop() {
   int luminosity = analogRead(LDR_PIN);
    Serial.print("\n LDR  =  ");
@@ -51,8 +110,16 @@ void loop() {
   Serial.print("\n Humidade: "); 
   Serial.print(map(sensorhumidade, 0, 1023, 0, 100));
   Serial.println("%");
+  delay(1000);
   
+   for (int i=0; i<5; i++){                         
+         accuml = accuml + tempC;       
+      }
+
+float Temp_M = accuml / 5; 
   
+ 
+  //void temp 
   if (luminosity <= MODO_OK) {
     LumiState = 0;  // OK
   } else if (luminosity <= MODO_ALERTA) {
@@ -63,7 +130,7 @@ void loop() {
   
   
   // Verifica o estado atual do sistema
-  switch (LumiState) {
+   switch (LumiState) {
   	case 0:      
       digitalWrite(GREEN_LED_PIN, HIGH);
       digitalWrite(YELLOW_LED_PIN, LOW);
@@ -72,6 +139,14 @@ void loop() {
       lcd.clear();
       lcd.setCursor(0, 0);
       lcd.print("Ambiente OK");
+     delay(1000);
+    while(true){
+    	Temp_Rod();
+      	delay(1000);
+      	Humi_Rod();
+      	delay(1000);
+      	break;
+    	}
       break;
     delay(3000);
     
@@ -84,8 +159,15 @@ void loop() {
       lcd.setCursor(0, 0);
       lcd.print("Ambiente a meia");
       lcd.setCursor(0, 1);
-      lcd.print("Luz");
-    
+      lcd.print("Luz");    
+      delay(1000);
+    while(true){
+    	Temp_Rod();
+      	delay(1000);
+      	Humi_Rod();
+      	delay(1000);
+      	break;
+    	}
       break;
     delay(3000);
     
@@ -99,65 +181,24 @@ void loop() {
       lcd.print("Ambiente muito ");
       lcd.setCursor(0, 1);
       lcd.print("CLARO");
+      delay(1000);
+    while(true){
+    	Temp_Rod();
+      	delay(1000);
+      	Humi_Rod();
+      	delay(1000);
+      	break;
+    	}
       break;
     delay(3000);
     default:
     	printf("1");
-  }
-   /* if (tempC<temp_OK) {
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("Temp. Baixa ");
-  lcd.setCursor(0, 1);
-  lcd.print("Temp. = ");
-  lcd.println(tempC,0);
-  }  
-  else if (tempC<temp_ALERTA){
-    lcd.clear();
-  	lcd.setCursor(0, 0);
-  	lcd.print("Temp. OK ");
-  	lcd.setCursor(0, 1);
-  	lcd.print("Temp. = ");
-  	lcd.println(tempC,0);      
-    }
-  else if (<temp_ALERTA){
-    lcd.clear();
-  	lcd.setCursor(0, 0);
-  	lcd.print("Umidade BAIXA ");
-  	lcd.setCursor(0, 1);
-  	lcd.print("Umid. = ");
-  	lcd.println(sensorhumidade,0);      
-    }  
-  else if (tempC<temp_ALERTA){
-    lcd.clear();
-  	lcd.setCursor(0, 0);
-  	lcd.print("Umidade  OK ");
-  	lcd.setCursor(0, 1);
-  	lcd.print("Umidade  = ");
-  	lcd.println(sensorhumidade,0);      
-    }  
-  else if (tempC<temp_ALERTA){
-    lcd.clear();
-  	lcd.setCursor(0, 0);
-  	lcd.print("Umidade  ALTA ");
-  	lcd.setCursor(0, 1);
-  	lcd.print("Umidade  = ");
-  	lcd.println(sensorhumidade,0);      
-    }  
+   }
+}
   
-  else {
-    lcd.clear();
-  	lcd.setCursor(0, 0);
-    lcd.print("Temp. ALTA ");
-  	lcd.setCursor(0, 1);
-  	lcd.print("Temp. = ");
-  	lcd.println(tempC,0); 
-  }
-       */
-  delay(2000);
 
       
- }
+
 
   
 
