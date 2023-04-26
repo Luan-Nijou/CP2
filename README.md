@@ -52,7 +52,7 @@ Desenvolvedores do Projeto:
 
 * Gabriel Augusto Maciel Toledo, RM551654, Nick no GitHub: GabrielToledoo;
 
-! [imagem] (https://user-images.githubusercontent.com/126830037/234448813-7d024ff3-efcc-4147-a51f-25e72d8562b3.png)
+![image](https://user-images.githubusercontent.com/126830016/234455331-89ccba08-6f4e-4190-88ca-00fc6279a6c3.png)
 
 ​
 
@@ -60,7 +60,7 @@ Desenvolvedores do Projeto:
 
 * Henrique Parra Benitez, RM551973, Nick no GitHub: rickparra;
 
-! [imagem] (https://user-images.githubusercontent.com/126830037/234448770-2618bf65-f024-4335-a289-bba3d4888e30.png)
+![image](https://user-images.githubusercontent.com/126830016/234455379-483b1a2d-797f-4b2e-87ab-b06b270e5d00.png)
 
 ​
 
@@ -68,7 +68,7 @@ Desenvolvedores do Projeto:
 
 * Luan Nijou, RM98920, Nick no GitHub: Luan-Nijou;
 
-! [imagem] (https://user-images.githubusercontent.com/126830037/234448721-06191be4-5ce0-434e-a889-1858b2d71e8a.png)
+![image](https://user-images.githubusercontent.com/126830016/234455410-04fa674d-5dd6-4d3b-81a4-49dc80e035a2.png)
 
 ​
 
@@ -76,7 +76,7 @@ Desenvolvedores do Projeto:
 
 * Roberto Oliveira Azzalin Navas, RM551460, Nick no GitHub: Robertooan07;
 
-! [imagem] (https://user-images.githubusercontent.com/126830037/234448669-4177c8ca-6eec-4e14-aaa3-8585a7f8dbd6.png)
+![image](https://user-images.githubusercontent.com/126830016/234455444-e75fa842-e281-41c4-8aaa-8ae9bff8a685.png)
 
 ​
 
@@ -84,4 +84,4 @@ Desenvolvedores do Projeto:
 
 * Tony Willian da Silva Segalin, RM550667, Nick no GitHub: TonyWillianFIAP.
 
-! [imagem] (https://user-images.githubusercontent.com/126830037/234448599-2b5a3beb-1502-41b1-aaf7-861ef75b7670.png)
+![image](https://user-images.githubusercontent.com/126830016/234455472-acc5fcb0-ca8e-4f16-995e-d89f887ea30a.png)
