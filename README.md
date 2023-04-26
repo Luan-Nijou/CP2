@@ -30,7 +30,7 @@ Para essa continuação do projeto, os donos da vinheria pediram para monitorar 
 
 * com a umidade do ambiente entre 60% e 80%, o display deve informar "Umidade OK" e mostrar qual o valor dela;
 
-! [imagem] (https://user-images.githubusercontent.com/126830037/234444793-bbd2bdd4-2660-4716-8279-2c81f5ae0e7b.png)
+![image](https://user-images.githubusercontent.com/126830016/234455172-40fcd14f-2a52-4d99-8468-5717749f490a.png)
 
 ​
 
